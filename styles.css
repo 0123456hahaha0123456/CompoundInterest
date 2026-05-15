@@ -1,0 +1,229 @@
+/* ============================================================
+   Box model reset
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   Base / typography
+   ============================================================ */
+body {
+  margin: 0;
+  background-color: #f5f6fa;
+  color: #1f2330;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2330;
+  margin: 0;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.currency-selector label {
+  color: #4a5160;
+  font-size: 0.85rem;
+}
+
+.currency-selector select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d0d4de;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2330;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.currency-selector select:focus {
+  border-color: #4f63d2;
+  box-shadow: 0 0 0 3px rgba(79, 99, 210, 0.18);
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a5160;
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================================
+   Page layout
+   ============================================================ */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ============================================================
+   Section / card base
+   ============================================================ */
+.section {
+  background-color: #ffffff;
+  border: 1px solid #e3e6ee;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(15, 17, 23, 0.04);
+}
+
+/* ============================================================
+   Form section
+   ============================================================ */
+.section-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #4a5160;
+  font-size: 0.85rem;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d0d4de;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2330;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #4f63d2;
+  box-shadow: 0 0 0 3px rgba(79, 99, 210, 0.18);
+}
+
+/* ============================================================
+   Stats section
+   ============================================================ */
+.section-stats #stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.stat {
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #4a5160;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f2330;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   Charts section
+   ============================================================ */
+.section-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background-color: transparent;
+  padding: 0;
+}
+
+.chart-panel {
+  background-color: #ffffff;
+  border: 1px solid #e3e6ee;
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(15, 17, 23, 0.04);
+}
+
+.chart-panel--wide {
+  grid-column: 1 / -1;
+}
+
+.chart-panel canvas {
+  display: block;
+  width: 100% !important;
+  aspect-ratio: 16 / 7;
+  height: auto !important;
+}
+
+.chart-description {
+  margin: 0 0 1rem 0;
+  color: #4a5160;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.chart-description strong {
+  color: #1f2330;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Responsive — mobile (< 720px)
+   ============================================================ */
+@media (max-width: 719px) {
+  .section-form form {
+    grid-template-columns: 1fr;
+  }
+
+  .section-charts {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-panel--wide {
+    grid-column: 1;
+  }
+
+  .section-stats #stats {
+    justify-content: flex-start;
+  }
+}

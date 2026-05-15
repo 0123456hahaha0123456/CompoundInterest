@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compound Interest Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <h1>Compound Interest Dashboard</h1>
+      <div class="currency-selector">
+        <label for="currency">Currency</label>
+        <select id="currency" name="currency">
+          <option value="USD" selected>USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="JPY">JPY (¥)</option>
+          <option value="CNY">CNY (¥)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="AUD">AUD (A$)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="SGD">SGD (S$)</option>
+          <option value="VND">VND (₫)</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="section section-form">
+      <form id="inputs">
+        <div class="field">
+          <label for="years">Number of years</label>
+          <input type="number" id="years" name="years" value="20" min="1" max="80" required />
+        </div>
+        <div class="field">
+          <label for="initial">Initial investment (<span class="currency-symbol">$</span>)</label>
+          <input type="number" id="initial" name="initial" value="10000" min="0" step="100" required />
+        </div>
+        <div class="field">
+          <label for="monthly">Monthly contribution (<span class="currency-symbol">$</span>)</label>
+          <input type="number" id="monthly" name="monthly" value="500" min="0" step="50" required />
+        </div>
+        <div class="field">
+          <label for="rate">Annual interest rate (%)</label>
+          <input type="number" id="rate" name="rate" value="7" min="0" step="0.1" required />
+        </div>
+        <div class="field">
+          <label for="frequency">Compound frequency</label>
+          <select id="frequency" name="frequency" required>
+            <option value="1">Annually</option>
+            <option value="2">Semi-annually</option>
+            <option value="4">Quarterly</option>
+            <option value="12" selected>Monthly</option>
+            <option value="365">Daily</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="inflation">Inflation rate (%)</label>
+          <input type="number" id="inflation" name="inflation" value="3" min="0" step="0.1" required />
+        </div>
+      </form>
+    </div>
+
+    <div class="section section-stats">
+      <div id="stats">
+        <div class="stat">
+          <span class="stat-label">Total Contributed</span>
+          <span class="stat-value" id="stat-contributed">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Future Value</span>
+          <span class="stat-value" id="stat-future">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Interest Earned</span>
+          <span class="stat-value" id="stat-interest">—</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Real Value (today's <span class="currency-symbol">$</span>)</span>
+          <span class="stat-value" id="stat-real">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section-charts">
+      <div class="chart-panel">
+        <h2>Total Contributions</h2>
+        <p class="chart-description">
+          The raw money you put in — your initial investment plus every monthly contribution added together over time.
+          No growth or interest is included here. This is your "out of pocket" line.
+        </p>
+        <canvas id="chart-contributions"></canvas>
+      </div>
+      <div class="chart-panel">
+        <h2>Future Value</h2>
+        <p class="chart-description">
+          The projected balance of your account over time, including compound interest growth on top of your contributions.
+          This is how much money the account would show on a statement at each year — the "nominal" dollar amount.
+        </p>
+        <canvas id="chart-future"></canvas>
+      </div>
+      <div class="chart-panel chart-panel--wide">
+        <h2>Future Value vs. Inflation</h2>
+        <p class="chart-description">
+          Compares three lines so you can see what your money is really worth:
+          <strong>Total Contributions</strong> (what you put in),
+          <strong>Future Value</strong> (the nominal balance — what the statement shows),
+          and <strong>Real Value</strong> (the future balance converted back into today's purchasing power, i.e. what
+          it would actually buy you in 2026 dollars after inflation).
+          The gap between Future Value and Real Value is how much of your gain inflation quietly eats.
+        </p>
+        <canvas id="chart-inflation"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
